@@ -17,9 +17,18 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 # Challenges and Design Principles of ArtColors
 A brief summary of the challenges of designing a subtractive Red-Yellow-Blue color space explains the principles I used to design ArtColors.  
 
-Hereafter the names of color spaces will use these standard abbreviations:
+Hereafter common color space names will be abbreviated as follows:
 
-**RYB-**=*Subtractive Red-Yellow-Blue color space*.  **RGB+**=*Additive Red-Green-Blue*.  **CYMK**=*Cyan-Yellow-Magenta-Black*  **HSV**=*Hue-Saturation-Value*.
+**RYB-**=*Subtractive Red-Yellow-Blue color space*  Our color system.  
+**RGB+**=*Additive Red-Green-Blue*  
+**HSV**=*Hue-Saturation-Value*  
+**CYMK**=*Cyan-Yellow-Magenta-Black*  A subtractive system, most frequently used in printing.
+
+
+
+
+
+
 
 
 
