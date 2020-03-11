@@ -37,7 +37,7 @@ Thus almost everyone who has ever taken an art class or read a book on art color
 ### Principle #1: ArtColors should mimic a standard RYB- color wheel
 
 ## Challenge #2: RGB+ and HSV color wheels are blue-green dominated
-Because two of the three primaries are *green and blue*, yellow and purple (rather than magenta) are severely compressed.  One has to be sniper to select them on a color picker, and small changes in RGB values quickly sweep through these ranges of color.
+Because two of the three primaries are *green and blue*, the yellow-orange range is severely compressed, purple is narrow and dominated by magenta.  One has to be sniper to select these common hues on a color picker.  Small changes in RGB values quickly sweep through these ranges of color.
 
 Compare the standard HSV color wheel with the ArtColor color wheel to see the problem and its solution:
 ![HSV Color Wheel](images/HSV-wheel.png) ![ArtColor Wheel](images/ArtColor-ColorWheel.png)
