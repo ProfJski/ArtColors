@@ -31,7 +31,8 @@ RGB+ makes sense for what it was designed to do.  Computer monitors are emissive
 
 Moreover, traditional instruction in art still uses RYB- to teach color theory.  Traditional art color theory has a long and complex history, in part driven by the range of pigments available to artists and their vast experience.  While the theoretical formalization of this body of knowledge into RYB- was premised in part on erroneous 19th century ideas of the physics of color, the approach is still fundamentally valid -- as evidenced by the fact that artists, who devote enormous study to color -- still use it as a reference.  The success of RYB- does not depend on its ability to theoretically unify the physics of light and human physiology, but on its *empirical validity* to accurately predict what color will result from subtractive color mixing.
 
-Thus almost everyone who has ever taken an art class or read a book on art color theory has encountered the standard RYB- color wheel: ![Artist Color Wheel](images/ArtColorWheel.jpg)
+Thus almost everyone who has ever taken an art class or read a book on art color theory has encountered the standard RYB- color wheel:  
+![Artist Color Wheel](images/ArtColorWheel.jpg)
 
 ### Principle #1: ArtColors should mimic a standard RYB- color wheel
 
