@@ -55,3 +55,19 @@ Non-spectral colors include:
 So RGB is based on the physics of emitted light, and its primaries are selected based on the physiology of human cone cells.  But RGB *doesn't* factor in higher-level yet *intrinsically human* neurological factors of how the brain generates certain color perceptions that are non-spectral.  Art color theory was attentive to this fact from mere experience, even without understanding of the underlying causes.  In this regard, they were better empiricists, and RYB- theory reflects that advantage in my opinion.
 
 
+## Challenge #3: Preserve traditional color harmonies in palette selection
+The term [color harmony](https://blog.thepapermillstore.com/color-theory-color-harmonies/) is used in art to describe the theory of choosing attractive palettes which achieve different artistic effects.  In a *musical* harmony, notes played at the same time need to be sufficiently distinct to avoid dissonance, but the separation between the notes achieves the overall feeling of the chord.  So likewise in a *color* harmony, colors are chosen that pair together to achieve a palette that produces a certain aesthetic effect.  (A bonus for *color* harmonization, unlike music, is that a narrow range of colors (called analogous) are not dissonant.)
+
+A book on color theory for painting will effectively demonstrate how a painter's choice of palette greatly impacts his artwork.
+
+On a traditional artist's color wheel, the theory of color harmonies is neatly summarized by the geometrical relationships seen in the central circle of the wheel:
+
+![Artist Color Wheel](images/ArtColorWheel.jpg)
+
+The traditional palette schemes and their geometries are:
+* Triadic
+
+   Colors separated by 120 degrees
+* Split Complementary
+* Square Tetradic
+* Rectangular Tetradic
