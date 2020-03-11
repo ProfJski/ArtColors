@@ -20,9 +20,9 @@ A brief summary of the challenges of designing a subtractive Red-Yellow-Blue col
 Hereafter common color space names will be abbreviated as follows:
 
 **RYB-**=*Subtractive Red-Yellow-Blue color space*  Our color system.  
-**RGB+**=*Additive Red-Green-Blue*  
-**HSV**=*Hue-Saturation-Value*  
-**CYMK**=*Cyan-Yellow-Magenta-Black*  A subtractive system, most frequently used in printing.
+**RGB+**=*Additive Red-Green-Blue*  The system most widely used for monitor display. [Wiki](https://en.wikipedia.org/wiki/RGB_color_model)  
+**HSV+**=*Hue-Saturation-Value*  An alternative representation of the RGB+ system.  [Wiki](https://en.wikipedia.org/wiki/HSL_and_HSV)  
+**CYMK**=*Cyan-Yellow-Magenta-Black*  A subtractive system, most frequently used in printing.  [Wiki](https://en.wikipedia.org/wiki/CMYK_color_model)  
 
 
 
