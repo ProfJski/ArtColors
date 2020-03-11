@@ -46,8 +46,9 @@ Doing so is where the math gets interesting.
 
 If you are the inquisitive sort who wonders why RGB+ fails at providing a balanced spectrum of colors, there are two reasons.  The first we can summarize by analogy: green and blue aren't very "orthonomal" in our color experience.  But this merely begs the question: why not?  The answer is not trivial.  Indeed the question is even more perpleixing when one considers that RGB is based in part on the physiology of human cone cells.  The answer is that our *psychological* perception of color is not a direct result of human cone cell neuron response curves.  The brain *does its own mixing* to create colors we commonly experience but are not aligned to the frequency-response curve of any one cone cell.  These colors are [Non-spectral colors](https://en.wikipedia.org/wiki/Spectral_color#Non-spectral_colors): you don't see them in prismatically separated light.
 
-Non-spectral colors include: *all grays!* (thank you, rod cells); *all tints and shades* = art terms for adding white or black respectively to a "pure" color, thus all mixtures involving any gray to spectral colors; and important hues like purple (and any tint or shade thereof).  "Purple" isn't a spectral color: the perception of purple is the psychological result when the brain mixes stimuli from both the red-sensitive and blue-sensitive cone cells.
-
-
+Non-spectral colors include:  
+*All grays!* (thank you, rod cells)  
+*All tints and shades* = art terms for adding white or black respectively to a "pure" color, thus all mixtures involving any gray to spectral colors  
+Important hues like purple (and any tint or shade thereof).  "Purple" isn't a spectral color: the perception of purple is the psychological result when the brain mixes stimuli from both the red-sensitive and blue-sensitive cone cells.
 
 
