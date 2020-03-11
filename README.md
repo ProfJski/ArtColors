@@ -37,13 +37,13 @@ Thus almost everyone who has ever taken an art class or read a book on art color
 ### Principle #1: ArtColors should mimic a standard RYB- color wheel
 
 ## Challenge #2: RGB+ and HSV color wheels are blue-green dominated
-Because two of the three primaries are *green and blue*, the yellow-orange range is severely compressed, purple is narrow and dominated by magenta.  One has to be sniper to select these common hues on a color picker.  Small changes in RGB values quickly sweep through these ranges of color.
+Because two of the three primaries are *green and blue*, the yellow-orange range is severely compressed, purple is likewise narrow and dominated by magenta.  One has to be sniper to select these hues.  Small changes in RGB values or HSV hue quickly sweep through these ranges of color.
 
 Compare the standard HSV color wheel with the ArtColor color wheel to see the problem and its solution:
 ![HSV Color Wheel](images/HSV-wheel.png) ![ArtColor Wheel](images/ArtColor-ColorWheel.png)
 
 ### Principle #2: ArtColors should make it easy to select a wide range of hues by balancing the spectrum
-Doing so is where the math gets interesting.  
+The ArtColor Wheel broadens the yellow-orange spectrum and adds deeper purples, while keeping distinct lines for cyan and magenta.  Doing so is where the math gets interesting.
 
 If you are the inquisitive sort who wonders why RGB+ fails at providing a balanced spectrum of colors, there are two reasons.  The first we can summarize by analogy: green and blue aren't very "orthonomal" in our color experience.  But this merely begs the question: why not?  The answer is not trivial.  Indeed the question is even more perpleixing when one considers that RGB is based in part on the physiology of human cone cells.  Shouldn't green and blue *seem* orthonormal to us insofar as they are aligned to the "vector bases" of our cone cell "inputs"?  The answer is that our *psychological* perception of color is not a direct result of human cone cell neuron response curves.  The brain *does its own mixing* to create colors we commonly experience but are not aligned to the frequency-response curve of any one cone cell.  These colors are [non-spectral colors](https://en.wikipedia.org/wiki/Spectral_color#Non-spectral_colors): you don't see them in prismatically separated light.
 
