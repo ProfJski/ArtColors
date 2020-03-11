@@ -64,7 +64,7 @@ On a traditional artist's color wheel, the theory of color harmonies is neatly s
 
 ![Artist Color Wheel](images/ArtColorWheel.jpg)
 
-The traditional palette schemes and their geometries are:
+The traditional palette schemes and their geometries in RYB color space are:
 * Triadic
 
    Colors separated by 120 degrees
@@ -81,5 +81,8 @@ The traditional palette schemes and their geometries are:
    Colors at 0, 120, 180, 300 degrees.  Pick two complementary colors.  For each, find their two triadic harmony colors and make these four a set.  These latter four colors make up the rectangular tetradic scheme.
 
 **The problem: These geometrical relations depend on RYB primaries separated by 120 degrees, which RGB does not provide.**
-Thus an RGB or HSV color wheel makes it difficult to select traditional harmonious palettes.  Even some more sophisticated online color pickers claim to provide these color harmonies, but are incorrect because they use the proper degrees of separation, but an HSV hue wheel, which is RGB not RYB.
+Thus an RGB or HSV color wheel makes it difficult to select traditional harmonious palettes because green, not yellow, is 120 degrees from red and blue.  Even some sophisticated online color pickers claim to provide these color harmonies, but they fail because they use the correct degrees of separation, but the wrong basis (HSV), yielding incorrect colors.
+
+### Principle #3: ArtColors should provide traditional color harmony palettes using the above geometrical relationships on an RYB color wheel.
+Harmonious palette selection should be as easy as rotating the Artist's color wheel.  Pick one color, and the others are automatically selected.  A palette using these hues, their tints, shades and mixtures, can then be automatically exported.  Export can include something simple as invoking a function with one color as input, and returning an array of harmonious colors.
 
