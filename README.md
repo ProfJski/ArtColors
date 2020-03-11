@@ -15,7 +15,7 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
    There is a lot of literature on subtractive color mixing.  My approach aims for a compromise between simplicity and accuracy, with much less code than a reflectance-based approach.
    
 # Challenges and Design Principles of ArtColors
-A brief summary of the challenges of designing a subtractive Red-Yellow-Blue color space explains the principles I used to design ArtColors.  
+A brief summary of the challenges of designing a subtractive Red-Yellow-Blue color space explains the principles I used to design ArtColors.  It also summarizes many of the things I learned while researching this project, and so I offer it in case it is instructive to others.
 
 Hereafter common color space names will be abbreviated as follows:
 
@@ -44,11 +44,13 @@ Compare the standard HSV color wheel with the ArtColor color wheel to see the pr
 ### Principle #2: ArtColors should make it easy to select a wide range of hues by balancing the spectrum
 Doing so is where the math gets interesting.  
 
-If you are the inquisitive sort who wonders why RGB+ fails at providing a balanced spectrum of colors, there are two reasons.  The first we can summarize by analogy: green and blue aren't very "orthonomal" in our color experience.  But this merely begs the question: why not?  The answer is not trivial.  Indeed the question is even more perpleixing when one considers that RGB is based in part on the physiology of human cone cells.  The answer is that our *psychological* perception of color is not a direct result of human cone cell neuron response curves.  The brain *does its own mixing* to create colors we commonly experience but are not aligned to the frequency-response curve of any one cone cell.  These colors are [Non-spectral colors](https://en.wikipedia.org/wiki/Spectral_color#Non-spectral_colors): you don't see them in prismatically separated light.
+If you are the inquisitive sort who wonders why RGB+ fails at providing a balanced spectrum of colors, there are two reasons.  The first we can summarize by analogy: green and blue aren't very "orthonomal" in our color experience.  But this merely begs the question: why not?  The answer is not trivial.  Indeed the question is even more perpleixing when one considers that RGB is based in part on the physiology of human cone cells.  Shouldn't green and blue *seem* orthonormal to us insofar as they are aligned to the "vector bases" of our cone cell "inputs"?  The answer is that our *psychological* perception of color is not a direct result of human cone cell neuron response curves.  The brain *does its own mixing* to create colors we commonly experience but are not aligned to the frequency-response curve of any one cone cell.  These colors are [non-spectral colors](https://en.wikipedia.org/wiki/Spectral_color#Non-spectral_colors): you don't see them in prismatically separated light.
 
 Non-spectral colors include:  
 *All grays!* (thank you, rod cells)  
 *All tints and shades* = art terms for adding white or black respectively to a "pure" color, thus all mixtures involving any gray to spectral colors  
 Important hues like purple (and any tint or shade thereof).  "Purple" isn't a spectral color: the perception of purple is the psychological result when the brain mixes stimuli from both the red-sensitive and blue-sensitive cone cells.
+
+So RGB is based on the physics of emitted light, and its primaries are selected based on the physiology of human cone cells, but it doesn't factor in higher-level but intrinsically human neurological factos of how the brain generates certain color perceptions that are non-spectral.  Art color theory was attentive to this fact from mere experience, even without understanding of the underlying causes.
 
 
