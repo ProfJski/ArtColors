@@ -56,7 +56,7 @@ So RGB is based on the physics of emitted light, and its primaries are selected 
 
 
 ## Challenge #3: Preserve traditional color harmonies in palette selection
-The term [color harmony](https://blog.thepapermillstore.com/color-theory-color-harmonies/) is used in art to describe the theory of choosing attractive palettes which achieve different artistic effects.  In a *musical* harmony, notes played at the same time need to be sufficiently distinct to avoid dissonance, but the separation between the notes achieves the overall feeling of the chord.  So likewise in a *color* harmony, colors are chosen that pair together to achieve a palette that produces a certain aesthetic effect.  (A bonus for *color* harmonization, unlike music, is that a narrow range of colors (called analogous) are not dissonant.)
+The term [color harmony](https://blog.thepapermillstore.com/color-theory-color-harmonies/) is used in art to describe the theory of choosing attractive palettes which achieve different artistic effects.  In a *musical* harmony, notes played at the same time need to be sufficiently distinct to avoid dissonance, but the separation between the notes achieves the overall feeling of the chord (major chord vs. minor, etc.).  So likewise in a *color* harmony, colors are chosen that pair together to achieve a palette that produces a certain aesthetic effect.  (A bonus for *color* harmonization, unlike music, is that a narrow range of colors (called analogous) are not dissonant.)  A "complementary color" is its "opposite" on the traditional color wheel, which has its roots in the after-image one sees after looking at a bright color then looking at white.
 
 A book on color theory for painting will effectively demonstrate how a painter's choice of palette greatly impacts his artwork.
 
@@ -69,5 +69,17 @@ The traditional palette schemes and their geometries are:
 
    Colors separated by 120 degrees
 * Split Complementary
+
+   Two other colors offset by 30 degrees from the complementary color of the first.
+   
 * Square Tetradic
+
+   Colors at 0, 90, 180, 270 degrees.  Two sets of complementary colors, separated by 90 degrees.
+   
 * Rectangular Tetradic
+
+   Colors at 0, 120, 180, 300 degrees.  Pick two complementary colors.  For each, find their two triadic harmony colors and make these four a set.  These latter four colors make up the rectangular tetradic scheme.
+
+**The problem: These geometrical relations depend on RYB primaries separated by 120 degrees, which RGB does not provide.**
+Thus an RGB or HSV color wheel makes it difficult to select traditional harmonious palettes.  Even some more sophisticated online color pickers claim to provide these color harmonies, but are incorrect because they use the proper degrees of separation, but an HSV hue wheel, which is RGB not RYB.
+
