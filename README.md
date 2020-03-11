@@ -14,3 +14,12 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 
    There is a lot of literature on subtractive color mixing.  My approach aims for a compromise between simplicity and accuracy, with much less code than a reflectance-based approach.
    
+# Challenges and Design Principles of ArtColors
+A brief summary of the challenges of designing a subtractive Red-Yellow-Blue color space explains the principles I used to design ArtColors.  
+
+Hereafter the names of color spaces will use these standard abbreviations:
+
+**RYB-**=*Subtractive Red-Yellow-Blue color space*.  **RGB+**=*Additive Red-Green-Blue*.  **CYMK**=*Cyan-Yellow-Magenta-Black*  **HSV**=*Hue-Saturation-Value*.
+
+
+
