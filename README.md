@@ -8,7 +8,7 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
    
 2. **Easy generation of harmonious palettes for pleasing graphic design.**
 
-   Color schemes in fine art are based on simple geometric relations on an RYB color wheel which has red, yellow and blue primaries 120 degrees apart.  The typical RGB color wheel has red, green and blue 120 degrees apart, so these color schemes cannot be easily employed.
+   Color schemes in fine art are based on simple geometric relations on an RYB color wheel which has red, yellow and blue primaries 120 degrees apart.  The typical RGB color wheel has red, green and blue 120 degrees apart, so these relations fail.  The blue-green spectrum tends to dominate, obscuring rich yellows, purples and browns.
    
 3. **Portable simple formulas for RYB-to-RGB conversion and subtractive color mixing.**
 
