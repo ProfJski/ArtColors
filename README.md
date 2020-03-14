@@ -118,7 +118,7 @@ ArtColors seeks to provide a simple function call that does the job with just tw
 
 The basic approach was inspired by considering how paints actually mix.  Examine this close-up of paints mixing:
 
-~[Paints Mixing](images/PaintsMixing.jpg)
+![Paints Mixing](images/PaintsMixing.jpg)
 
 If you look carefully (or have ever used acrylic or oil paint), you can see that in some areas, the two paints are completely blended subtractively: yellow and blue are making a much darker green.  Red and blue are making a *very* dark purple.  Yet in other areas, where the blending is not so thorough, fine lines of yellow and blue exist side-by-side.  These paints are reflecting yellow and blue, and at a distance, are actually *additively* blended by the eye (because we are dealing with two different reflected hues "mixing" at a distance).  How does this help?
 
