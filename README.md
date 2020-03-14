@@ -167,6 +167,34 @@ This ensures that blend percentages near 0% or 100% look very close to the origi
 
 First, we *additively mix* Color A and Color B in the specified `blend` ratio.  This represents the additive blending effect of those fine swirls of the two colors in the image above, which I think is where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result, according to the logistic function based on the color distance.  Voila!  A pretty good result occurs for a wide range of input colors.
 
+### Two different kinds of additive mixing
+Someone on StackOverflow nicely noted that the range of RGB values (0-255) came from the square root of camera CCD intensity signals, so ArtColors provides two kinds of additive mixing.
+
+Standard "linear" LERP:
+```
+Color ColorMixLin(Color a, Color b, float blend) {
+    Color out;
+    out.r=(1.0-blend)*a.r+blend*b.r;
+    out.g=(1.0-blend)*a.g+blend*b.g;
+    out.b=(1.0-blend)*a.b+blend*b.b;
+    out.a=(1.0-blend)*a.a+blend*b.a;
+
+return out;
+}
+```
+And LERP using the square of the RGB values, which tends to provide a brighter, yet still accurate mix:
+
+```
+Color ColorMix(Color a, Color b, float blend) {
+    Color out;
+    out.r=sqrt((1.0-blend)*(a.r*a.r)+blend*(b.r*b.r));
+    out.g=sqrt((1.0-blend)*(a.g*a.g)+blend*(b.g*b.g));
+    out.b=sqrt((1.0-blend)*(a.b*a.b)+blend*(b.b*b.b));
+    out.a=(1.0-blend)*a.a+blend*b.a;
+
+return out;
+}
+```
 
 
 ### Footnotes
