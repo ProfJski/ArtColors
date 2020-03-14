@@ -110,21 +110,65 @@ There is no single "canonical" way to assign RGB values to our RYB space.  To my
 Placeholder
 
 ## Challenge #5: Subtractive Color Mixing
-The paint and dye industry has figured out this problem, so the standard solution to replicating subtractive color mixing in an RGB+ display involves calculating the reflectance spectrum of each component pigment: the amount of light reflected for every wavelength in the visible spectrum by 10nm increments.  Then this data is stored in a table.  (Some tables for sRGB colors also exist.)  Then one of several algorithms, often iterative for accuracy, are used to blend these reflectances and produce an RGB color.  This is the "right" way to do it.
+The paint and dye industry has figured out this problem.  The best solution to replicating subtractive color mixing in an RGB+ display involves calculating the reflectance spectrum of each component pigment: the amount of light reflected for every wavelength in the visible spectrum measured in 10nm increments.  Then this data is stored in a table.  (Some tables for sRGB colors also exist.)  Then one of several algorithms, often iterative for accuracy, are used to blend these reflectances and produce an RGB color.  This is the "right" way to do it.
 
-It is also the cumbersome way for a graphics artist who is *not* trying to exactly replicate real-world pigments but who just wants to subtractively and intuitively mix colors.  Short formulas on StackExchange often give [poor results][2], although some software packages provide this functionality well, like Krita painterly mixer using the Kubelka-Munk algorithm, which is still fairly complex.  
+It is also the cumbersome way.  For a graphics artist who is *not* trying to exactly replicate real-world pigments but who just wants to subtractively and intuitively mix colors, something far simpler should do.  Short formulas on StackExchange often give [poor results][2], although some software packages provide this functionality effectively, like Krita painterly mixer using the Kubelka-Munk algorithm.  But this algorithm is still fairly complex.
 
-ArtColors seeks to provide a simple function call that does the job with just two input colors: `Return Color=Mix(Color a, Color b, percentage)` should be all we need to mix a color subtractively.  ArtColors uses an algorithm which (I think) gives pretty good results with a fraction of the code, and no need for calculating or storing reflectance data or computationally complex formulas.
+### Principle #5
+ArtColors should provide a simple function call that subtractively mixes two colors in a realistic way with a minimum of code, taking only two RGB inputs and a blending ratio, like this: `Return Color=Mix(Color a, Color b, percentage)` 
+
+ArtColors uses an algorithm which (I think) gives pretty good results with a fraction of the code, and no need for calculating or storing reflectance data or computationally complex formulas.  The goal is 80% realistic with only 20% of the code.
 
 The basic approach was inspired by considering how paints actually mix.  Examine this close-up of paints mixing:
 
 ![Paints Mixing](images/PaintsMixing.jpg)
 
-If you look carefully (or have ever used acrylic or oil paint), you can see that in some areas, the two paints are completely blended subtractively: yellow and blue are making a much darker green.  Red and blue are making a *very* dark purple.  Yet in other areas, where the blending is not so thorough, fine lines of yellow and blue exist side-by-side.  These paints are reflecting yellow and blue, and at a distance, are actually *additively* blended by the eye (because we are dealing with two different reflected hues "mixing" at a distance).  How does this help?
+If you look carefully (or have ever used acrylic or oil paint), you can see that in some areas, the two paints are completely blended subtractively: yellow and blue are making a much darker green.  Red and blue are making a *very* dark purple.  Yet in other areas, where the blending is not so thorough, fine lines of yellow and blue exist side-by-side.  These paints are reflecting yellow and blue, and at a distance, these colors are actually *additively* blended by the eye (because we are dealing with two different reflected lights "mixing" at a distance).  Consider further, that mixing paints is a *mixture* in the Chemistry sense: no *chemical* change happens.  The red and blue molecules are still there in a thorough blend, doing exactly what they were doing when separate.  There's just a lot of subsurface physical effects going on as light is reflected and absorbed as it bounces around in the medium and eventually strikes the eye.
 
-Some strictly subtractive approaches start with White, and then subtract the RGB values of Color A and Color B from White, and return what is left.  *This approach is often too dark.*  Moreover, if Color A = Color B, our function should return that same color.  Mixing the same color with the same color should equal the same color.  Using a strictly subtractive algorithm, the result is a darker version of the original hue (because its values are subtracted from White *twice*).  The closer the two input colors, the *less* change should be seen in the blend.
+How does this help?
+
+Strictly subtractive approaches start with White, and then subtract the RGB values of Color A and Color B from White, and return what is left.  *This approach is often too dark.*  Moreover, if Color A = Color B, our function should return that same color.  Mixing the same color with the same color should equal the same color!  Using a strictly subtractive algorithm, the result is a darker version of the original hue (because the input color values are subtracted from White *twice*).  The closer the two input colors, the *less* change should be seen in the blend.  Moreover, the blend shouldn't be *wholly* subtractive to be realistic, because some of each pigment is still reflecting its distinctive color on a tiny scale.
+
+The relevant code is as follows:
+```
+Color ColorMixSub(Color a, Color b, float blend) {
+    Color out;
+    Color c,d,f;
+
+    c=ColorInv(a);
+    d=ColorInv(b);
+
+    f.r=max(0,255-c.r-d.r);
+    f.g=max(0,255-c.g-d.g);
+    f.b=max(0,255-c.b-d.b);
+
+    float cd=ColorDistance(a,b);
+    cd=4.0*blend*(1.0-blend)*cd;
+    out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);
+
+    out.a=255;
+return out;
+}
+```
+Explanation:
+`Color a` and `Color b` are the input colors.  `blend` specifies how much of each color to blend, from 0 to 1.0, like a linear interpolation (LERP).  0 = All color A, 1 = All color B.  0.5 = 50%-50% mix of A and B.
+
+First we find the RGB inverses of Color a and b, and assign them to new colors c and d.
+Then we subtract both c and d from pure RGB White, clamping the result to zero, and assigning this to color f.
+So far, f is the purely subtractive result, which suffers from the problems mentioned above.
+
+Next, we calculate the "Color Distance" between Color a and Color b, which is just the vector distance between them in RGB space.  This value will help solve the problem that mixing two similar hues should not change the result very much.  The color distance factor `cd` is then piped through a logistic function according to our blend percentage:
+`
+cd=4.0*blend*(1.0-blend)*cd;
+`
+This ensures that blend percentages near 0% or 100% look very close to the original input colors, and gives a much better gamut to the magic that comes next.  The last line does all the work.
+
+First, we *additively mix* Color A and Color B in the specified `blend` ratio.  This represents the additive blending effect of those fine swirls of the two colors in the image above, which I think is often where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result, according to the logistic function based on the color distance.  Voila!  A pretty good result occurs for a wide range of input colors.
 
 
+
+
+The final line 
 
 
 ### Footnotes
