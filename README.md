@@ -161,14 +161,12 @@ Next, we calculate the "Color Distance" between Color a and Color b, which is ju
 `
 cd=4.0*blend*(1.0-blend)*cd;
 `
-This ensures that blend percentages near 0% or 100% look very close to the original input colors, and gives a much better gamut to the magic that comes next.  The last line does all the work.
+This ensures that blend percentages near 0% or 100% look very close to the original input colors, and gives a much better gamut to the magic that comes next.  The last line does all the work:
 
-First, we *additively mix* Color A and Color B in the specified `blend` ratio.  This represents the additive blending effect of those fine swirls of the two colors in the image above, which I think is often where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result, according to the logistic function based on the color distance.  Voila!  A pretty good result occurs for a wide range of input colors.
+`out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);`
 
+First, we *additively mix* Color A and Color B in the specified `blend` ratio.  This represents the additive blending effect of those fine swirls of the two colors in the image above, which I think is where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result, according to the logistic function based on the color distance.  Voila!  A pretty good result occurs for a wide range of input colors.
 
-
-
-The final line 
 
 
 ### Footnotes
