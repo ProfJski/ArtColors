@@ -112,13 +112,24 @@ Placeholder
 ## Challenge #5: Subtractive Color Mixing
 The paint and dye industry has figured out this problem, so the standard solution to replicating subtractive color mixing in an RGB+ display involves calculating the reflectance spectrum of each component pigment: the amount of light reflected for every wavelength in the visible spectrum by 10nm increments.  Then this data is stored in a table.  (Some tables for sRGB colors also exist.)  Then one of several algorithms, often iterative for accuracy, are used to blend these reflectances and produce an RGB color.  This is the "right" way to do it.
 
-It is also the cumbersome way for a graphics artist who is *not* trying to exactly replicate real-world pigments but who just wants to subtractively and intuitively mix colors.
+It is also the cumbersome way for a graphics artist who is *not* trying to exactly replicate real-world pigments but who just wants to subtractively and intuitively mix colors.  Short formulas on StackExchange often give [poor results][2], although some software packages provide this functionality well, like Krita painterly mixer using the Kubelka-Munk algorithm, which is still fairly complex.  
 
-ArtColors uses an algorithm which gives pretty good results with a fraction of the code: no need for storing reflectance data or computationally complex formulas.
+ArtColors seeks to provide a simple function call that does the job with just two input colors: `Return Color=Mix(Color a, Color b, percentage)` should be all we need to mix a color subtractively.  ArtColors uses an algorithm which (I think) gives pretty good results with a fraction of the code, and no need for calculating or storing reflectance data or computationally complex formulas.
+
+The basic approach was inspired by considering how paints actually mix.  Examine this close-up of paints mixing:
+
+~[Paints Mixing](images/PaintsMixing.jpg)
+
+If you look carefully (or have ever used acrylic or oil paint), you can see that in some areas, the two paints are completely blended subtractively: yellow and blue are making a much darker green.  Red and blue are making a *very* dark purple.  Yet in other areas, where the blending is not so thorough, fine lines of yellow and blue exist side-by-side.  These paints are reflecting yellow and blue, and at a distance, are actually *additively* blended by the eye (because we are dealing with two different reflected hues "mixing" at a distance).  How does this help?
+
+Some strictly subtractive approaches start with White, and then subtract the RGB values of Color A and Color B from White, and return what is left.  *This approach is often too dark.*  Moreover, if Color A = Color B, our function should return that same color.  Mixing the same color with the same color should equal the same color.  Using a strictly subtractive algorithm, the result is a darker version of the original hue (because its values are subtracted from White *twice*).  The closer the two input colors, the *less* change should be seen in the blend.
+
+
 
 
 ### Footnotes
 [1]: http://vis.computer.org/vis2004/DVD/infovis/papers/gossett.pdf
+[2]: https://stackoverflow.com/questions/1351442/is-there-an-algorithm-for-color-mixing-that-works-like-mixing-real-colors
 
 
 
