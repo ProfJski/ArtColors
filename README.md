@@ -220,20 +220,24 @@ Color ColorMix(Color a, Color b, float blend) {
 return out;
 }
 ```
-ArtColors provides all three mixes (Quad Additive, Linear Additive, and Subtractive) for any two input colors, blended in 10% intervals.  Here's some examples:
+ArtColors provides all three mixes (Quad Additive, Linear Additive, and Subtractive) for any two input colors, blended in 10% intervals.  The third color bar is the subtractive mixing in the examples below:
 
+Red and Blue make a dark, rich purple.
 ![Color Mixing Example 1](images/SubtractiveExample1.png)
 
+Relatively opposed colors in this triadic mint-magenta-gold palette blend darker:
 ![Color Mixing Example 2](images/SubtractiveExample2.png)
 
+Blending three primaries should result in brown -- and it does!
+(Red+Yellow gives the Orange on the right, Blue is on the left.)
 ![Color Mixing Example 3](images/SubtractiveExample3.png)
 
+Blending two similar colors, like this Vermillion and Orange, should yield results quite close to our inputs.
+Yet close inspection of the RGB values of the three color bars shows that quadratic additive is lighter than linear additive, which is lighter than the subtractive mix.
+![Color Mixing Example 4](images/SubtractiveExample4.png)
 
 ### Footnotes
 [1]: http://vis.computer.org/vis2004/DVD/infovis/papers/gossett.pdf
 [2]: https://stackoverflow.com/questions/1351442/is-there-an-algorithm-for-color-mixing-that-works-like-mixing-real-colors
-
-
-
 
 
