@@ -171,17 +171,17 @@ Then we subtract both c and d from pure RGB White, clamping the result to zero, 
 So far, f is the purely subtractive result, which suffers from the problems mentioned above.
 
 Next, we calculate the "Color Distance" between Color a and Color b, which is just the vector distance between them in RGB space.
-
-`float cd=ColorDistance(a,b);
-
+```
+float cd=ColorDistance(a,b);
+```
 This value will help solve the problem that mixing two similar hues should not change the result very much.  The color distance factor `cd` is then piped through a logistic function according to our blend percentage:
-
-`cd=4.0*blend*(1.0-blend)*cd;
-
+```
+cd=4.0*blend*(1.0-blend)*cd;
+```
 This ensures that blend percentages near 0% or 100% look very close to the original input colors. It also gives a much better color gamut to the magic mix that comes next.  The last line does all the work:
-
-`out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);`
-
+```
+out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);`
+```
 First, we *additively mix* Color A and Color B in the specified `blend` ratio.  This represents the additive blending effect of those fine swirls of the two colors in the image above, which I think is where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result, according to the logistic function based on the color distance.  Voila!  A pretty good result occurs for a wide range of input colors.
 
 ### Two different kinds of additive mixing
