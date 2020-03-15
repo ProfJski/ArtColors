@@ -186,14 +186,16 @@ The last line does all the work:
 ```
 out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);`
 ```
-First, we *additively mix* Color A and Color B in the specified `blend` ratio, which is accomplished by `ColorMixLin(a,b,blend)`.  This represents the additive blending effect of those fine swirls of color in the image above and subsurface interaction.  Absence of this factor may be where a strictly subtractive approach yields odd results.  This *additive* result is then blended with our purely subtractive result `color f`, according to the transfer function mentioned above, which is based on the color distance between `Color a` and `Color b`.  Voila!  A pretty good result occurs for a wide range of input colors.
+First, we *additively mix* Color A and Color B in the specified `blend` ratio, which is accomplished by `ColorMixLin(a,b,blend)`.  This represents the additive blending effect of those fine swirls of color in the image above and subsurface interaction.  Absence of this factor may be where a strictly subtractive approach yields odd results.  This *additive* result is then blended with our purely subtractive result `color f`, according to the transfer function mentioned above, which is based on the color distance between `Color a` and `Color b`.  
 
+Voila!  A pretty good result occurs for a wide range of input colors.  Examples are below.
 
-## Addenda
-### Two different kinds of additive mixing
-Someone on StackOverflow nicely noted that the range of RGB values (0-255) came from the square root of camera CCD intensity signals, so ArtColors provides two kinds of additive mixing.
+### ArtColors provides two different kinds of additive mixing
+Someone on StackOverflow kindly shared that the range of RGB values (0-255) came from the square root of camera CCD intensity signals, so the usual linear interpolation of RGB values actually darkens the result somewhat.
 
-Standard "linear" LERP:
+Therefore ArtColors provides two kinds of additive mixing.
+
+Linear Additive Mix -- the formula used everywhere:
 ```
 Color ColorMixLin(Color a, Color b, float blend) {
     Color out;
@@ -205,7 +207,7 @@ Color ColorMixLin(Color a, Color b, float blend) {
 return out;
 }
 ```
-And LERP using the square of the RGB values, which tends to provide a brighter, yet still accurate mix:
+Quadratic Additive Mix -- we square the RGB values, LERP those, and square root the result.  This mix tends to preserve brightness / intensity somewhat better.
 
 ```
 Color ColorMix(Color a, Color b, float blend) {
@@ -218,6 +220,13 @@ Color ColorMix(Color a, Color b, float blend) {
 return out;
 }
 ```
+ArtColors provides all three mixes (Quad Additive, Linear Additive, and Subtractive) for any two input colors, blended in 10% intervals.  Here's some examples:
+
+![Color Mixing Example 1](images/SubtractiveExample1.png)
+
+![Color Mixing Example 2](images/SubtractiveExample2.png)
+
+![Color Mixing Example 3](images/SubtractiveExample3.png)
 
 
 ### Footnotes
