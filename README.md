@@ -220,15 +220,15 @@ Color ColorMix(Color a, Color b, float blend) {
 return out;
 }
 ```
-ArtColors provides all three mixes (Quad Additive, Linear Additive, and Subtractive) for any two input colors, blended in 10% intervals.  The third color bar is the subtractive mixing in the examples below:
+ArtColors provides all three mixes (Quad Additive, Linear Additive, and Subtractive) for any two input colors, blended in 10% intervals.  The top color bar is Quad Additive, the middle is Linear Additive, and the bottom is Subtractive Mixing in the examples below:
 
-Red and Blue make a dark, rich purple.
+Red and Blue make a dark, rich Purple.
 ![Color Mixing Example 1](images/SubtractiveExample1.png)
 
-Relatively opposed colors in this triadic mint-magenta-gold palette blend darker:
+The relatively opposed colors in this triadic palette of Mint-Magenta-Gold blend darker:
 ![Color Mixing Example 2](images/SubtractiveExample2.png)
 
-Blending three primaries should result in brown -- and it does!
+Blending three primaries should result in brown -- and it does!  
 (Red+Yellow gives the Orange on the right, Blue is on the left.)
 ![Color Mixing Example 3](images/SubtractiveExample3.png)
 
