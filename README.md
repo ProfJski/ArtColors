@@ -180,12 +180,16 @@ cd=4.0*blend*(1.0-blend)*cd;
 ```
 ![ArtColor Blend](images/ArtColor-Blend.png)
 
-This ensures that blend percentages near 0% or 100% look very close to the original input colors. It also gives a much better color gamut to the magic mix that comes next.  The last line does all the work:
+The endpoints ensure that blend percentages near 0% or 100% look very close to the original input colors.  The quadratic curve gives a good color gamut for the mix that comes next.  Distance colors will blend with a more subtractive dynamic.  Similar colors with a more additive dynamic.  The maximum of the quadratic transfer function is the normalized color distance, so colors on opposite sides of our color cube will mix most darkly in a 50%-50% blend.  
+
+The last line does all the work:
 ```
 out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);`
 ```
-First, we *additively mix* Color A and Color B in the specified `blend` ratio.  This represents the additive blending effect of those fine swirls of the two colors in the image above, which I think is where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result, according to the logistic function based on the color distance.  Voila!  A pretty good result occurs for a wide range of input colors.
+First, we *additively mix* Color A and Color B in the specified `blend` ratio, which is accomplished by `ColorMixLin(a,b,blend)`.  This represents the additive blending effect of those fine swirls of color in the image above and subsurface interaction.  Absence of this factor may be where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result `color f`, according to the transfer function mentioned above, which is based on the color distance between `Color a` and `Color b`.  Voila!  A pretty good result occurs for a wide range of input colors.
 
+
+## Addenda
 ### Two different kinds of additive mixing
 Someone on StackOverflow nicely noted that the range of RGB values (0-255) came from the square root of camera CCD intensity signals, so ArtColors provides two kinds of additive mixing.
 
