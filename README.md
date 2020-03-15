@@ -170,23 +170,23 @@ Then we subtract both c and d from pure RGB White, clamping the result to zero, 
 ```
 So far, f is the purely subtractive result, which suffers from the problems mentioned above.
 
-Next, we calculate the "Color Distance" between Color a and Color b, which is just the vector distance between them in RGB space.
+Next, we calculate the "Color Distance" between Color a and Color b, which is just the vector distance between them in RGB space, normalized between 0.0 (identical colors) and 1.0 (completely opposite, like white and black).
 ```
 float cd=ColorDistance(a,b);
 ```
-This value will help solve the problem that mixing two similar hues should not change the result very much.  The color distance factor `cd` is then tranformed by a quadratic transfer function according to our blend percentage:
+This value will help solve the problem that mixing two similar hues should not change the result very much.  The color distance factor `cd` is then tranformed by a quadratic transfer function, which regulates how much subtractive and additive mixing we do:
 ```
 cd=4.0*blend*(1.0-blend)*cd;
 ```
 ![ArtColor Blend](images/ArtColor-Blend.png)
 
-The endpoints ensure that blend percentages near 0% or 100% look very close to the original input colors.  The quadratic curve gives a good color gamut for the mix that comes next.  Distance colors will blend with a more subtractive dynamic.  Similar colors with a more additive dynamic.  The maximum of the quadratic transfer function is the normalized color distance, so colors on opposite sides of our color cube will mix most darkly in a 50%-50% blend.  
+The endpoints ensure that blend percentages near 0% or 100% look very close to the original input colors.  The quadratic curve gives a good color gamut for the mix that comes next.  The peak of the curve is determined by color distance.  The output of this function determines the amount of additive vs. subtractive blending in our result.  More distant colors will blend with a more subtractive dynamic (fully subtractive at y=1.0).  Similar colors blend with a more additive dynamic (a flatter curve) that still has a subtractive factor.  The maximum of the quadratic transfer function is the normalized color distance, so colors diametrically opposed in the color space will blend fully subtractively.  
 
 The last line does all the work:
 ```
 out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);`
 ```
-First, we *additively mix* Color A and Color B in the specified `blend` ratio, which is accomplished by `ColorMixLin(a,b,blend)`.  This represents the additive blending effect of those fine swirls of color in the image above and subsurface interaction.  Absence of this factor may be where a purely subtractive approach goes wrong and yields funny results.  This *additive* result is then blended with our purely subtractive result `color f`, according to the transfer function mentioned above, which is based on the color distance between `Color a` and `Color b`.  Voila!  A pretty good result occurs for a wide range of input colors.
+First, we *additively mix* Color A and Color B in the specified `blend` ratio, which is accomplished by `ColorMixLin(a,b,blend)`.  This represents the additive blending effect of those fine swirls of color in the image above and subsurface interaction.  Absence of this factor may be where a strictly subtractive approach yields odd results.  This *additive* result is then blended with our purely subtractive result `color f`, according to the transfer function mentioned above, which is based on the color distance between `Color a` and `Color b`.  Voila!  A pretty good result occurs for a wide range of input colors.
 
 
 ## Addenda
