@@ -133,7 +133,7 @@ Strictly subtractive approaches start with White, and then subtract the RGB valu
 
 Moreover, if Color A = Color B, our function should return that same color.  Mixing the same color with the same color should equal the same color!  Using a strictly subtractive algorithm, the result is a darker version of the original hue (because the input color values are subtracted from White *twice*).  The closer the two input colors, the *less* change should be seen in the blend.  
 
-Code which does both is as follows:
+The ArtColor code for subtractive mixing is:
 ```
 Color ColorMixSub(Color a, Color b, float blend) {
     Color out;
@@ -154,7 +154,7 @@ Color ColorMixSub(Color a, Color b, float blend) {
 return out;
 }
 ```
-Explanation:
+Explanation of Code:
 `Color a` and `Color b` are the input colors.  `blend` specifies how much of each color to blend, from 0 to 1.0, like a linear interpolation (LERP).  0.0 = All color A, 1.0 = All color B.  0.5 = 50%-50% mix of A and B.
 
 First we find the RGB inverses of Color a and b, and assign them to new colors c and d.
@@ -174,10 +174,12 @@ Next, we calculate the "Color Distance" between Color a and Color b, which is ju
 ```
 float cd=ColorDistance(a,b);
 ```
-This value will help solve the problem that mixing two similar hues should not change the result very much.  The color distance factor `cd` is then piped through a logistic function according to our blend percentage:
+This value will help solve the problem that mixing two similar hues should not change the result very much.  The color distance factor `cd` is then tranformed by a quadratic transfer function according to our blend percentage:
 ```
 cd=4.0*blend*(1.0-blend)*cd;
 ```
+![ArtColor Blend](images/ArtColor-Blend.png)
+
 This ensures that blend percentages near 0% or 100% look very close to the original input colors. It also gives a much better color gamut to the magic mix that comes next.  The last line does all the work:
 ```
 out=ColorMixLin(ColorMixLin(a,b,blend),f,cd);`
