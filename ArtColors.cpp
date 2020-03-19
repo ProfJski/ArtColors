@@ -645,7 +645,7 @@ int main()
             if (PaletteFile.is_open()) {
                 PaletteFile<<"JASC-PAL\r\n";
                 PaletteFile<<"0100\r\n";
-                PaletteFile<<to_string(10)<<"\r\n";
+                PaletteFile<<to_string(11)<<"\r\n";
                 for (float i=0.0;i<1.1;i+=0.1) {
                     col=ColorMix(mix_a,mix_b,i);
                     PaletteFile<<to_string(col.r)<<" "<<to_string(col.g)<<" "<<to_string(col.b)<<"\r\n";
@@ -665,7 +665,7 @@ int main()
             if (PaletteFile.is_open()) {
                 PaletteFile<<"JASC-PAL\r\n";
                 PaletteFile<<"0100\r\n";
-                PaletteFile<<to_string(10)<<"\r\n";
+                PaletteFile<<to_string(11)<<"\r\n";
                 for (float i=0.0;i<1.1;i+=0.1) {
                     col=ColorMixLin(mix_a,mix_b,i);
                     PaletteFile<<to_string(col.r)<<" "<<to_string(col.g)<<" "<<to_string(col.b)<<"\r\n";
@@ -685,7 +685,7 @@ int main()
             if (PaletteFile.is_open()) {
                 PaletteFile<<"JASC-PAL\r\n";
                 PaletteFile<<"0100\r\n";
-                PaletteFile<<to_string(10)<<"\r\n";
+                PaletteFile<<to_string(11)<<"\r\n";
                 for (float i=0.0;i<1.1;i+=0.1) {
                     col=ColorMixSub(mix_a,mix_b,i);
                     PaletteFile<<to_string(col.r)<<" "<<to_string(col.g)<<" "<<to_string(col.b)<<"\r\n";
@@ -706,7 +706,7 @@ int main()
             if (PaletteFile.is_open()) {
                 PaletteFile<<"JASC-PAL\r\n";
                 PaletteFile<<"0100\r\n";
-                PaletteFile<<to_string(10)<<"\r\n";
+                PaletteFile<<to_string(11)<<"\r\n";
                 for (float i=0.0;i<1.1;i+=0.1) {
                     col=ColorMixSub(mix_a,mix_b,i);
                     col=ColorInv(col);
