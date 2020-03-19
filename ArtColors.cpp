@@ -287,7 +287,7 @@ int main()
 {
 //Initialize Raylib
     InitWindow(1500, 900, "ArtColors: RYB mixer and palette selector");
-    SetWindowPosition(600,50);
+    SetWindowPosition(400,50);
 
     Camera2D camera = { 0 };
     camera.target = (Vector2){ 0, 0 };
@@ -722,9 +722,7 @@ int main()
         }
 
         ScreenShotButtonState=GuiButton((Rectangle){1300,50,70,35},"Screen Shot");
-        if (ScreenShotButtonState) {
-            TakeScreenshot("ArtColors-ScreenShot.png");
-        }
+
 
 /*
         HelpButtonState=GuiToggle((Rectangle){1400,50,30,35},"Help",HelpButtonState);
@@ -737,6 +735,11 @@ int main()
         EndMode2D();
  //       DrawFPS(10,10);
         EndDrawing();
+
+        if (ScreenShotButtonState) {
+            TakeScreenshot("ArtColors-ScreenShot.png");
+        }
+
     }
 
     return 0;
