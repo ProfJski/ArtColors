@@ -1,7 +1,7 @@
 # ArtColors
 Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditional art school color wheel and palette selector provides triadic, split-complementary and tetradic color harmonies.  RGB-to-RYB conversion with simple formulas.  Built with RayLib and RayGui.
 
-*First beta release: March 2020* See TODO.md for details.
+*First beta release: March 2020.* See TODO.md for details.
 
 # Uses
 1. **Intuitive color mixing for graphic design, data visualization, GUI creation or video game graphics.**
