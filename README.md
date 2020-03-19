@@ -27,7 +27,7 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 
 **Custom Color Mixing** - At the bottom of the screen are two Red-Yellow-Blue mixing areas.  Color A and Color B are mixed in the color mixing bars according to three kinds of mixing (see explanation below): Additive Quadratic mixing, Additive Linear mixing (the one you are used to), and *Subtractive* (yay!).  Check the tiny box above "Inverse" to display the *inverse color of the subtractive mix.*  Each color bar starts from 100% of Color A to 100% of Color B, ranging by 10% steps in between.
 
-**Exporting** - Palettes are saved in .pal files, which are an ASCII readable standard.  You can import the palettes into GIMP, Paint Shop Pro, Adobe, etc.  *Save swatches* will save all the color swatches.  This will be 72 times the number of theme colors in your palette. *Save color bars* will save the color mixing bar of your choice.  Color bar palettes are only 10 colors in size.  If you check the "Inverse" box, an option to save the inverse color bar will also appear.
+**Exporting** - Palettes are saved in .pal files, which are an ASCII readable standard.  You can import the palettes into GIMP, Paint Shop Pro, Adobe, etc.  *Save swatches* will save all the color swatches.  This will be 72 times the number of theme colors in your palette. *Save color bars* will save the color mixing bar of your choice.  Color bar palettes are only 11 colors in size.  If you check the "Inverse" box, an option to save the inverse color bar will also appear.
 
 **Screen Shot** - Useful if you want to import the whole screen into a graphics program, and sample whatever hue you want from it that way.
 
