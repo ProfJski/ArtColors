@@ -3,6 +3,8 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 
 *First beta release: March 2020.* See Roadmap.md for details.
 
+![Demo](images/ArtColorsDemo.gif)
+
 # Uses
 1. **Intuitive color mixing for graphic design, data visualization, GUI creation or video game graphics.**
 
