@@ -17,7 +17,20 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 3. **Portable simple formulas for RYB-to-RGB conversion and subtractive color mixing.**
 
    There is a lot of literature on subtractive color mixing.  My approach aims for a compromise between simplicity and accuracy, with much less code than a reflectance-based approach.
-   
+
+# How To Use It
+**Canvas Color** - Switches between black or white background, which is useful for appraising light or dark colors.
+
+**Palette Type** - Choose from one of six types of color harmonies (see explanation below).  Different harmonies have different numbers of basic "theme" colors: Triadic (3), Split Complementary (3), Square Tetradic (4), Rectangular Tetradic (4), Complementary (2), and Analogous colors (4).  Your basic theme colors appear next to the color wheel, and their locations are marked by small squares, just like the windows in a handheld color wheel.
+
+**Palette Swatches** - Determined by your selected palette type.  A range of saturations and tints/shades based on the theme colors, from almost-black to almost-white, and from low saturation to high.
+
+**Custom Color Mixing** - At the bottom of the screen are two Red-Yellow-Blue mixing areas.  Color A and Color B are mixed in the color mixing bars according to three kinds of mixing (see explanation below): Additive Quadratic mixing, Additive Linear mixing (the one you are used to), and *Subtractive* (yay!).  Each color bar starts from 100% of Color A to 100% of Color B, ranging by 10% steps in between.
+
+**Exporting** - Palettes are saved in .pal files, which are an ASCII readable standard.  You can import the palettes into GIMP, Paint Shop Pro, Adobe, etc.  *Save swatches* will save all the color swatches.  This will be 72 times the number of theme colors in your palette. *Save color bars* will save the color mixing bar of your choice.  These palettes are only 10 colors in size.
+
+**Screen Shot** - Useful if you want to import the whole screen into a graphics program, and sample whatever hue you want from it that way.
+
 # Challenges and Design Principles of ArtColors
 A brief summary of the challenges of designing a subtractive Red-Yellow-Blue color space explains the principles I used to design ArtColors.  It also summarizes many of the things I learned while researching this project, and so I offer it in case it is instructive to others.
 
