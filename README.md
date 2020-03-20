@@ -29,13 +29,13 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 
 **Custom Color Mixing** - At the bottom of the screen are two Red-Yellow-Blue mixing areas.  Color A and Color B are mixed in the color mixing bars according to three kinds of mixing (see explanation below): Additive Quadratic mixing, Additive Linear mixing (the one you are used to), and *Subtractive* (yay!).  Check the tiny box above "Inverse" to display the *inverse color of the subtractive mix.*  Each color bar starts from 100% of Color A to 100% of Color B, ranging by 10% steps in between.
 
+All Color Triplets shown on-screen are RGB values so you can copy them down if you'd like.
+
 **Exporting** - Palettes are saved in .pal files, which are an ASCII readable standard.  You can import the palettes into GIMP, Paint Shop Pro, Adobe, etc.  *Save swatches* will save all the color swatches.  This will be 72 times the number of theme colors in your palette. *Save color bars* will save the color mixing bar of your choice.  Color bar palettes are only 11 colors in size.  If you check the "Inverse" box, an option to save the inverse color bar will also appear.
 
-If you want to extract the RGB data from the .pal file with a text editor, the first three lines of the file are: a FOURCC code (JASC-PAL), a file type version (100) and the number of colors in the file.  Lines are terminated with \r\n.
+If you want to extract the RGB data from the .pal file with a text editor, the first three lines of the file are: a FOURCC code (JASC-PAL), a file type version (100) and the number of colors in the palette.  All subsequent numbers are RGB triplets for each color in the palette. Lines are terminated with \r\n.  The file can safely be edited to suit your needs.  Some programs may require either 16 or 256 colors in a .pal file; others don't abide by this convention, including GIMP.
 
-**Screen Shot** - Useful if you want to import the whole screen into a graphics program, and sample whatever hue you want from it that way.
-
-All Color Triplets shown on-screen are RGB values so you can copy them down if you'd like.
+**Screen Shot** - Useful if you want to import the whole screen into a graphics program, and sample there whatever hue you want.
 
 # Challenges and Design Principles of ArtColors
 A brief summary of the challenges of designing a subtractive Red-Yellow-Blue color space explains the principles I used to design ArtColors.  It also summarizes many of the things I learned while researching this project, and so I offer it in case it is instructive to others.
