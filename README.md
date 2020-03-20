@@ -5,6 +5,8 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 
 ![ScreenShot](images/ArtColorsScreen.png)
 
+![ScreenShot](images/ArtColorsScreenWhite.png)
+
 # Uses
 1. **Intuitive color mixing for graphic design, data visualization, GUI creation or video game graphics.**
 
