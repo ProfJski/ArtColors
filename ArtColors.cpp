@@ -108,10 +108,12 @@ int main()
     bool ScreenShotButtonState=false;
     bool DrawInverseColors=false;
 
-    int comboBoxActive = 0;
+    int PaletteSelectorResult = 0;
     int CanvasToggleGroup = 0;
 
     bool ColorPickerActive=false;
+    int ColorblindMode=0;
+    bool RenderForColorDeficiency=false;
 
     while (!WindowShouldClose()){
 
@@ -200,9 +202,9 @@ int main()
 
 //Color Palette Selection
         DrawText("Palette Type",550,30,16,GRAY);
-        comboBoxActive = GuiComboBox((Rectangle){ 550, 50, 150, 30 }, "Triadic;SplitComp;SqTetrad;RectTetrad;Analogous;Compl", comboBoxActive);
+        PaletteSelectorResult = GuiComboBox((Rectangle){ 550, 50, 150, 30 }, "Triadic;SplitComp;SqTetrad;RectTetrad;Analogous;Compl", PaletteSelectorResult);
         PaletteDegrees.clear();
-        switch (comboBoxActive)
+        switch (PaletteSelectorResult)
         {
         case 0:
             PaletteDegrees.push_back(degrees);
@@ -277,6 +279,9 @@ int main()
                 for (float j=-0.8;j<=0.8;j+=0.2) {
                     PCol=Saturate(col,i);
                     PCol=Brighten(PCol,j);
+                    if (RenderForColorDeficiency) {
+                        PCol=ColorBlindTransform(PCol,ColorblindMode);
+                    }
                     DrawRectangle(1050+i*300+sep*s,250+j*100,15,15,PCol);
                 }
             }
@@ -503,6 +508,12 @@ int main()
             }
         }
         }
+
+
+        DrawText("Colorblind mode:",1240,780,16,GRAY);
+        ColorblindMode = GuiComboBox((Rectangle){ 1240, 820, 150, 35 }, "Normal;Protanopia;Deuteranopia;Tritanopia;Achromatopsia", ColorblindMode);
+        if (ColorblindMode==0) RenderForColorDeficiency=false; else RenderForColorDeficiency=true;
+
 
         ScreenShotButtonState=GuiButton((Rectangle){1300,50,70,35},"Screen Shot");
 

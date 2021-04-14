@@ -63,6 +63,7 @@ Vector3 Vector3Scale(Vector3 v, float scalar)
 Color VecToCol(Vector3 in);
 Vector3 ColToVec(Color c);
 Color Saturate(Color in, float sat);
+Color ColorBlindTransform(Color in, int CBtype);
 Color Xform_RYB2RGB(int r, int y, int b);
 Color Xform_RGB2RYB(int r, int g, int b);
 Color ColorMix(Color a, Color b, float blend);

@@ -41,6 +41,44 @@ Color Saturate(Color in, float sat) {
 return out;
 }
 
+Color ColorBlindTransform(Color in, int CBtype) {
+//Types 0=normal, 1=Protanopia, 2=Deuteranopia, 3=Tritanopia, 4=Achromatopsia
+//Matrices taken from https://gist.github.com/Lokno/df7c3bfdc9ad32558bb7
+
+    Color out=BLACK;
+    switch(CBtype) {
+    case 0:
+        return in;
+    case 1:
+        out.r=in.r*0.567+in.g*0.433+in.b*0.000;
+        out.g=in.r*0.558+in.g*0.442+in.b*0.000;
+        out.b=in.r*0.000+in.g*0.242+in.b*0.758;
+        return out;
+    case 2:
+        out.r=in.r*0.625+in.g*0.375+in.b*0.000;
+        out.g=in.r*0.700+in.g*0.300+in.b*0.000;
+        out.b=in.r*0.000+in.g*0.300+in.b*0.700;
+        return out;
+    case 3:
+        out.r=in.r*0.950+in.g*0.050+in.b*0.000;
+        out.g=in.r*0.000+in.g*0.433+in.b*0.567;
+        out.b=in.r*0.000+in.g*0.475+in.b*0.525;
+        return out;
+    case 4:
+        out.r=in.r*0.299+in.g*0.587+in.b*0.114;
+        out.g=in.r*0.299+in.g*0.587+in.b*0.114;
+        out.b=in.r*0.299+in.g*0.587+in.b*0.114;
+        return out;
+    default:
+        return in;
+    }
+
+return in;
+}
+
+
+
+
 Color Xform_RYB2RGB(int r, int y, int b) {
     float rin=(float)r/255.0;
     float yin=(float)y/255.0;
