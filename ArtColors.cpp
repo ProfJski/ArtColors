@@ -1,8 +1,8 @@
 //ArtColors by Eric J. Jenislawski
-//Version 0.1
+//Version 0.2
 //Subtractive Red-Yellow-Blue color mixing and palette selector
 //Copyright 2020, Eric J. Jenislawski.  Licensed under GNU General Public License version 3 or later.
-//The extremely useful RayLib and RayGUI libraries are by Ramon Santamaria (raysan5).
+//The extremely useful RayLib and RayGUI libraries are by Ramon Santamaria (raysan5) https://github.com/raysan5/
 
 
 #include "raylib.h"
@@ -53,7 +53,7 @@ Color map2(float deg) {
     Vector3 out;
     Color output;
 
-    //Function based color spread around the wheel
+    //Function-based color spread around the wheel
     out.x=255*step2(deg);
     out.y=255*step2(deg-120);
     out.z=255*step2(deg-240);
