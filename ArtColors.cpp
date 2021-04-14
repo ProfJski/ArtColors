@@ -201,7 +201,7 @@ int main()
         DrawText("Left click on Color A, right click on B",250,640,16,GRAY);
 
 //Color Palette Selection
-        DrawText("Palette Type",550,30,16,GRAY);
+        DrawText("Palette Type",550,30,20,GRAY);
         PaletteSelectorResult = GuiComboBox((Rectangle){ 550, 50, 150, 30 }, "Triadic;SplitComp;SqTetrad;RectTetrad;Analogous;Compl", PaletteSelectorResult);
         PaletteDegrees.clear();
         switch (PaletteSelectorResult)
@@ -305,7 +305,7 @@ int main()
 
 //Custom blender
 
-        DrawText("Custom Color Blender",100,750,16,GRAY);
+        DrawText("Custom Color Blender",100,750,20,GRAY);
 
         myred=GuiSlider({100,780,255,20},"Red",NULL,myred,0.0,255.0);
         col=Xform_RYB2RGB(myred,0,0);
@@ -362,16 +362,16 @@ int main()
         }
 
 
-        DrawText("Additive",700,410,12,GRAY);
-        DrawText("Quadratic:",700,430,12,GRAY);
+        DrawText("Additive",700,410,16,GRAY);
+        DrawText("Quadratic:",700,430,16,GRAY);
 
-        DrawText("Additive",700,480,12,GRAY);
-        DrawText("Linear:",700,500,12,GRAY);
+        DrawText("Additive",700,480,16,GRAY);
+        DrawText("Linear:",700,500,16,GRAY);
 
-        DrawText("Subtractive:",700,560,12,GRAY);
+        DrawText("Subtractive:",700,560,16,GRAY);
 
         DrawInverseColors=GuiToggle((Rectangle){700,620,10,10}," ",DrawInverseColors);
-        DrawText("Inverse:",700,640,12,GRAY);
+        DrawText("Inverse:",700,640,16,GRAY);
 
         for (float i=0.0;i<1.1;i+=0.1) {
             col=ColorMix(mix_a,mix_b,i);
@@ -425,7 +425,7 @@ int main()
             }
         }
 
-        DrawText("Save Color Bars:",950,30,16,GRAY);
+        DrawText("Save Color Bars:",950,30,20,GRAY);
         TextExportButtonState2=GuiButton((Rectangle){950,50,50,35},"Quad+");
         if (TextExportButtonState2) {
             ofstream PaletteFile;
@@ -510,7 +510,7 @@ int main()
         }
 
 
-        DrawText("Colorblind mode:",1240,780,16,GRAY);
+        DrawText("Colorblind mode:",1240,780,20,GRAY);
         ColorblindMode = GuiComboBox((Rectangle){ 1240, 820, 150, 35 }, "Normal;Protanopia;Deuteranopia;Tritanopia;Achromatopsia", ColorblindMode);
         if (ColorblindMode==0) RenderForColorDeficiency=false; else RenderForColorDeficiency=true;
 
@@ -522,13 +522,15 @@ int main()
         HelpButtonState=GuiToggle((Rectangle){1380,50,50,35},"Help",HelpButtonState);
         if (HelpButtonState) {
             string helpmessage="Choose a palette by moving the Hue / Brightness / Saturation sliders and selecting your palette type by cycling clicking the Palette Type button.\n";
-            helpmessage+="This will update the color swatches on the left.\n";
-            helpmessage+="You can blend by selecting them using the Pick Color button, then clicking anywhere in the program window\n";
-            helpmessage+="Left click selects color A for blending.  Click the button again, and right click on what you want for color B.\n";
-            helpmessage+="You can take the colors from the color wheel or use the RYB blending areas below to mix your own colors then select them.\n";
-            helpmessage+="Use the save buttons above the swatches to export palette values for them or for the 10 values for various blends and inverse colors using the buttons above the swatches.\n";
-            helpmessage+="All triplets of numbers are RGB values.\n";
-            HelpBoxState=GuiMessageBox((Rectangle){200,500,1000,300},"Help Info",helpmessage.c_str(),"OK");
+            helpmessage+="This will update the color swatches on the right which span a range of tints and saturations.\n";
+            helpmessage+="You can blend two colors by selecting them using the Pick Color button.  Click the button then click anywhere in the program window to sample a color, i.e., eyedropper mode\n";
+            helpmessage+="Left click selects the first color for blending and right click selects the second color.  The mixing bars show different ways of mixing the two colors.  Subtractive uses the ArtColors formula.\n";
+            helpmessage+="You can take the colors from the color wheel or use the RYB blending areas below to specify your own colors then select them to mix them.\n";
+            helpmessage+="The save buttons above the swatches will export palette values for the swatches or for the mixing bars and inverse color bar respectively.\n";
+            helpmessage+="The Colorblind Mode selector (lower right) replicates how the palette in the swatches would appear to people with various color vision deficiencies.\n";
+            helpmessage+="You can use it to check, for example, whether your choice of palette colors are visually distinct to the colorblind.\n";
+            helpmessage+="All triplets of numbers are RGB values.  Pressing ESC quits the program. \n";
+            HelpBoxState=GuiMessageBox((Rectangle){200,400,1000,400},"Help Info",helpmessage.c_str(),"OK");
             if (HelpBoxState==0||HelpBoxState==1) HelpButtonState=false;
         }
 
