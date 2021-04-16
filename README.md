@@ -1,5 +1,5 @@
-# ArtColors
-Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditional art school color wheel and palette selector provides triadic, split-complementary and tetradic color harmonies.  RGB-to-RYB conversion with simple formulas.  Built with RayLib and RayGui.
+# ArtColors: 
+ArtColors provides intuitive color mixing in **subtractive Red-Yellow-Blue** color space.  It's a digital version of the traditional art school color wheel and palette selector, which provides triadic, split-complementary,tetradic and analogous color harmonies.  ArtColors also provides RGB-to-RYB conversion with simple formulas.  Built with RayLib and RayGui, but the formulas can be used separately.
 
 *First beta release: March 2020.* See Roadmap.md for details.
 
@@ -7,21 +7,30 @@ Intuitive color mixing in subtractive Red-Yellow-Blue color space.  A traditiona
 
 ![ScreenShot](images/ArtColorsScreenWhite.png)
 
-# Uses
+# Goals
 1. **Intuitive color mixing for graphic design, data visualization, GUI creation or video game graphics.**
 
-   Everyone grows up learning that red and yellow make orange.  The RGB space is unintuitive.
+   Everyone grows up learning that yellow and blue make green, not cyan!  Additive mixing in the RGB space is unintuitive.  Subtractive mixing in the RYB space is familiar.
    
 2. **Easy generation of harmonious palettes for pleasing graphic design.**
 
-   Color schemes in fine art are based on simple geometric relations on an RYB color wheel which has red, yellow and blue primaries 120 degrees apart.  The typical RGB color wheel has red, green and blue 120 degrees apart, so these relations fail.  The blue-green spectrum tends to dominate, obscuring rich yellows, purples and browns.
+   The basic color schemes in fine art are based on simple geometric relations on an RYB color wheel which has red, yellow and blue primaries 120 degrees apart.  The typical RGB color wheel has red, green and blue 120 degrees apart, so these relations fail.  In RGB, the blue-green spectrum tends to dominate, obscuring rich yellows, purples and browns.
    
 3. **Portable simple formulas for RYB-to-RGB conversion and subtractive color mixing.**
 
    There is a lot of literature on subtractive color mixing.  My approach aims for a compromise between simplicity and accuracy, with much less code than a reflectance-based approach.
 
-# How To Use It
-**Canvas Color** - Switches between black or white background, which is useful for appraising light or dark colors.
+# How To Use ArtColors
+## To pick a color palette
+Select a type of color palette (triadic, tetradic, etc.) by clicking on the Palette Type button, then rotate the Hue slider.  The small squares that move around the perimeter of the wheel indicate the principal colors of your palette.  They are the same color as the larger rectangles to the right of the wheel, which also show their RGB values.  The swatches to the right vary the hue and saturation of your principal colors to provide a range of options.  You can save these values to disk by pressing the "Save swatches to .pal" button.  Done!
+
+You may also wish to check whether your palette is suitable for colorblind users.  In the lower right, clicking the "Colorblind mode" button changes your color swatches to approximate how they may be perceived by viewers with various color vision deficiencies: protanopia, deuteranopia, tritanopia and achromatopsia.  Click once more to return to normal view.
+
+## To mix your own shades using RYB
+On the lower left of the screen, there are two areas to generate colors from RYB values using sliders for Red, Yellow and Blue.  These values, or any other colors on the screen, can be blended by sampling them.  Click "Pick Color" and left-click on one color, then click "Pick Color" again and right-click on another color.  They will appear on the left and right sides of the color mixing bars in the middle-right of the screen.  The subtractive color mixing uses our algorithm to represent better how pigments blend in art media (paints, inks, pencils, crayons).  
+
+## Explanation of Options
+**Canvas Color** - Switches between black or white background.  You should definitely view your colors against both backgrounds, especially to appraise very light tints or dark shades.
 
 **Palette Type** - Choose from one of six types of color harmonies (see explanation below).  Different harmonies have different numbers of basic "theme" colors: Triadic (3), Split Complementary (3), Square Tetradic (4), Rectangular Tetradic (4), Complementary (2), and Analogous colors (4).  Your basic theme colors appear next to the color wheel, and their locations are marked by small squares, just like the windows in a handheld color wheel.
 
@@ -47,12 +56,14 @@ Hereafter common color space names will be abbreviated as follows:
 **HSV**=*Hue-Saturation-Value*  An alternative representation of the RGB+ system.  [Wiki](https://en.wikipedia.org/wiki/HSL_and_HSV)  
 **CYMK**=*Cyan-Yellow-Magenta-Black*  A subtractive system, most frequently used in printing.  [Wiki](https://en.wikipedia.org/wiki/CMYK_color_model)  
 
-## Challenge #1: Everyone learns color mixing using RYB- primaries
+## Challenge #1: Everyone learns color mixing using RYB- primaries not RGB+
 From the time you first played with crayons or fingerpaints, you've been using an RYB- color space.  Red plus green make a murky brown, but in RGB+ they make yellow.  Red and blue make a dark purple, but in RGB+ they make a bright magenta.  This can make it hard to quickly find the colors you want when blending.
 
-RGB+ makes sense for what it was designed to do.  Computer monitors are emissive: they emit light which therefore blends additively.  No painting can do this.  Art media are reflective: the pigments we use absorb incident white light and reflect what they don't absorb.  Thus, they are subtractive: the more pigments one adds, the less light is reflected to the eye.  RGB+ was designed to align its primaries with the colors of light to which the three types of human [cone cells](https://en.wikipedia.org/wiki/Cone_cell) in the eye are most responsive.  Any sufficiently distinct set of primaries could have been chosen, but RGB was chosen for basically two reasons: the physiology of the human eye, and RGB are "spectral" colors -- colors seen when passing white light through a prism.  The disadvantages are: the vast majority our experience mixing colors is in a subtractive space, and many colors in our experience are non-spectral (see below).
+RGB+ makes sense for what it was designed to do.  Computer monitors are emissive: they emit light which therefore blends additively.  No painting can do this.  Art media are reflective: the pigments we use absorb incident white light and reflect what they don't absorb.  Thus, they are subtractive: the more pigments one adds, the less light is reflected to the eye.  RGB+ was designed to align two (viz., blue and green) of its primaries with the colors of light to which the three types of human [cone cells](https://en.wikipedia.org/wiki/Cone_cell) in the eye are most responsive.  Plus red because a palette of blue, green and yellow-green would be rather limiting! Any sufficiently distinct set of primaries could have been chosen, but RGB was chosen for basically two reasons: the physiology of the human eye, and RGB are "spectral" colors -- colors seen when passing white light through a prism.  Once again, Green and Blue were easily produced by the lighting at the time -- mercury discharge tubes.  The red chosen for [CIE 1931 RGB colorspace](https://en.wikipedia.org/wiki/CIE_1931_color_space#CIE_standard_observer) was chosen not because of typical lighting spectrum but basically because the human eye's response to variation in hue is rather flat in the pure red zone so it made up for the fact that the red hue wasn't as easy to generate its sources may vary the most.  (RGB was further reinforced by the three phosphor colors of old-fashioned [color TV sets](https://en.wikipedia.org/wiki/Phosphor#Cathode_ray_tubes), with an acceptable red once again being the most difficult phosphor to obtain.)  
 
-Moreover, traditional instruction in art still uses RYB- to teach color theory.  Traditional art color theory has a long and complex history, in part driven by the range of pigments available to artists and their vast experience.  While the theoretical formalization of this body of knowledge into RYB- was premised in part on erroneous 19th century ideas of the physics of color, the approach is still fundamentally valid -- as evidenced by the fact that artists, who devote enormous study to color -- still use it as a reference.  The success of RYB- does not depend on its ability to theoretically unify the physics of light and human physiology, but on its *empirical validity* to accurately predict what color will result from subtractive color mixing.
+Some disadvantage of RGB+ are: the vast majority our experience mixing colors is in a subtractive space, and many colors in our experience are non-spectral (see below).
+
+Moreover, traditional instruction in art still uses RYB- to teach color theory.  Traditional art color theory has a long and complex history, in part driven by the range of pigments available to artists and their vast experience.  While the theoretical formalization of this body of knowledge into RYB- was premised in part (but only in part!) on erroneous 19th century ideas of the physics of color, the approach is still fundamentally valid -- as evidenced by the fact that artists, who devote enormous study to color -- still use it as a reference today.  The success of RYB- does not depend on its ability to theoretically unify the physics of light and human physiology, but on its *empirical validity* to accurately predict what color will result from subtractive color mixing.
 
 Thus almost everyone who has ever taken an art class or read a book on art color theory has encountered the standard RYB- color wheel:  
 ![Artist Color Wheel](images/ArtColorWheel.jpg)
